@@ -10,6 +10,7 @@ module.exports = function (knex) {
               price_in_cents: priceInCents
             }
           ])
+          .returning('*')
     },
     // users table helper
     addUser: async (firstName, lastName, email, password) => {
