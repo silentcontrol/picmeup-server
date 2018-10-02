@@ -9,8 +9,7 @@ module.exports = function (knex) {
               product_name: productName,
               price_in_cents: priceInCents
             }
-          ])
-          .returning('*')
+          ]).returning('*')
     },
     // users table helper
     addUser: async (firstName, lastName, email, password) => {
