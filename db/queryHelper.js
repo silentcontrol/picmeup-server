@@ -51,7 +51,7 @@ module.exports = function (knex) {
       return await
         knex('users')
           .where('email', email)
-          .column('email', 'password')
+          .column('email', 'password', 'id')
           .then(res => res)
     }
   };

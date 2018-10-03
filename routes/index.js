@@ -46,7 +46,8 @@ router.post("/login", async (req, res) => {
   if (user && bcrypt.compareSync(req.body.password, user.password)) {
     console.log("Found user");
     const payload = {
-      loggedIn: true
+      loggedIn: true,
+      user_ID: user.id
     };
     var token = jwt.sign(payload, req.app.get("secret"), {
       expiresIn: 60 * 60
@@ -117,7 +118,7 @@ router.post("/search", async (req, res) => {
 /* POST order to server */
 router.post("/orders", async (req, res) => {
   console.log("orders,", req.body);
-  var orderId = await dbInsert.addOrder(req.body.user_ID);
+  var orderId = await dbInsert.addOrder(req.decoded.user_ID);
 
   var order = req.body.orders.map(order => {
     return {
